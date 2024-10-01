@@ -4,7 +4,7 @@ import * as THREE from "three";
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
 
-function Box(props: ThreeElements["mesh"]) {
+const Box = (props: ThreeElements["mesh"]) => {
   const ref = useRef<THREE.Mesh>(null!);
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
@@ -22,7 +22,7 @@ function Box(props: ThreeElements["mesh"]) {
       <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
     </mesh>
   );
-}
+};
 
 const ThreeFiberSample = () => {
   return (
