@@ -1,14 +1,20 @@
 "use client";
 
-import * as THREE from "three";
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
+import type * as THREE from "three";
+import type React from "react";
+import { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import type { ThreeElements } from "@react-three/fiber";
 
 const Box = (props: ThreeElements["mesh"]) => {
-  const ref = useRef<THREE.Mesh>(null!);
+  const ref = useRef<THREE.Mesh>(null);
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  useFrame((state, delta) => (ref.current.rotation.x += delta));
+  useFrame((_, delta) => {
+    if (ref.current) {
+      ref.current.rotation.x += delta;
+    }
+  });
   return (
     <mesh
       {...props}
